@@ -5,5 +5,5 @@ version = "0.0.1"
 authors = ["Dylan Johnson <dylanatasmsa@gmail.com>"]
 
 [lib]
-name = "LittleTcp"
+name = "little_rust_tcp"
 path = "src/lib.rs"
