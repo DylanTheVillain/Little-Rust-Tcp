@@ -3,3 +3,7 @@
 name = "Little-Rust-Tcp"
 version = "0.0.1"
 authors = ["Dylan Johnson <dylanatasmsa@gmail.com>"]
+
+[lib]
+name = "LittleTcp"
+path = "src/lib.rs"
