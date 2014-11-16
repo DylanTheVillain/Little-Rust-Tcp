@@ -1,0 +1,5 @@
+[package]
+
+name = "Little-Rust-Tcp"
+version = "0.0.1"
+authors = ["Dylan Johnson <dylanatasmsa@gmail.com>"]
