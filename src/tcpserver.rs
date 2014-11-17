@@ -10,7 +10,7 @@ pub struct Server
 
 pub trait ServerFunction
 {
-    fn new(new_port: String, new_ip: String) -> Server;
+    fn new(new_port: String) -> Server;
     fn start_server(&self);
     fn format_ip(&self) -> String;
     fn get_port(&self) -> String;
@@ -19,9 +19,9 @@ pub trait ServerFunction
 
 impl ServerFunction for Server
 {
-    fn new(new_port: String, new_ip: String) -> Server
+    fn new(new_port: String) -> Server
     {
-        return Server{port: new_port, ip: new_ip};
+        return Server{port: new_port, ip: String::from_str("localhost")};
     }
 
     fn start_server(&self)
