@@ -29,9 +29,6 @@ impl ServerFunction for Server
         let ip = self.format_ip();
         let listener = TcpListener::bind(ip.as_slice());
         let mut acceptor = listener.listen();
-        let ip1 = self.format_ip();
-        let listener1 = TcpListener::bind(ip.as_slice());
-        let mut acceptor1 = listener1.listen();
     }
 
     fn format_ip(&self) -> String
