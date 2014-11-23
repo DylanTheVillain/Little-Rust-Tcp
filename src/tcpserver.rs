@@ -31,17 +31,11 @@ impl ServerFunction for Server
         let mut acceptor = listener.listen().unwrap();
         for opt_stream in acceptor.incoming()
         {
-            spawn(test());
-            // spawn(proc(){
-            //     let mut stream = opt_stream.unwrap();
-            //     stream.write(b"Hello World\r\n").unwrap();
-            // })
+            spawn(proc(){
+                let mut stream = opt_stream.unwrap();
+                stream.write(b"Hello World\r\n").unwrap();
+            })
         }
-    }
-
-    fn test()
-    {
-        println!("Hell");
     }
 
     fn format_ip(&self) -> String
