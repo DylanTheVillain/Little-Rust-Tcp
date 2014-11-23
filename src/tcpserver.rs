@@ -31,15 +31,17 @@ impl ServerFunction for Server
         let mut acceptor = listener.listen().unwrap();
         for opt_stream in acceptor.incoming()
         {
-            let (tx, rx) = channel();
-            spawn(proc(){
-                tx.send("test".to_string());
-            });
-            spawn(proc(){
-                let mut stream = opt_stream.unwrap();
-                println!("{}", rx.recv());
-                stream.write(b"Hello World\r\n").unwrap();
-            });
+            let mut stream = opt_stream.unwrap();
+            stream.write(b"Hey!\r\n");
+            // let (tx, rx) = channel();
+            // spawn(proc(){
+            //     tx.send("test".to_string());
+            // });
+            // spawn(proc(){
+            //     let mut stream = opt_stream.unwrap();
+            //     println!("{}", rx.recv());
+            //     stream.write(b"Hello World\r\n").unwrap();
+            // });
         }
     }
 
