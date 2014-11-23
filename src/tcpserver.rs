@@ -1,6 +1,7 @@
 use std::io::{TcpListener, TcpStream};
 use std::io::{Acceptor, Listener};
 use std::string::String;
+use data::Data;
 
 pub struct Server
 {
@@ -11,7 +12,7 @@ pub struct Server
 pub trait ServerFunction
 {
     fn new(new_port: String) -> Server;
-    fn start_server(&self);
+    fn start_server<T: Data>(&self, data_object: T);
     fn format_ip(&self) -> String;
     fn get_port(&self) -> String;
     fn get_ip(&self) -> String;
@@ -24,7 +25,7 @@ impl ServerFunction for Server
         return Server{port: new_port, ip: String::from_str("localhost")};
     }
 
-    fn start_server(&self)
+    fn start_server<T: Data>(&self, data_object: T)
     {
         let ip = self.format_ip();
         let listener = TcpListener::bind(ip.as_slice());
@@ -32,16 +33,7 @@ impl ServerFunction for Server
         for opt_stream in acceptor.incoming()
         {
             let mut stream = opt_stream.unwrap();
-            stream.write(b"Hey!\r\n");
-            // let (tx, rx) = channel();
-            // spawn(proc(){
-            //     tx.send("test".to_string());
-            // });
-            // spawn(proc(){
-            //     let mut stream = opt_stream.unwrap();
-            //     println!("{}", rx.recv());
-            //     stream.write(b"Hello World\r\n").unwrap();
-            // });
+            data_object.process_request_data(stream);
         }
     }
 
