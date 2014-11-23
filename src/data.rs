@@ -1,6 +1,6 @@
 use std::io::TcpStream;
 
-trait Data
+pub trait Data
 {
     fn process_request_data(&self, mut request: TcpStream);
 }
