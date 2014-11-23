@@ -33,7 +33,7 @@ impl ServerFunction for Server
         {
             spawn(proc(){
                 let mut stream = opt_stream.unwrap();
-                stream.write("Hello World\r\n").unwrap();
+                stream.write(b"Hello World\r\n").unwrap();
             })
         }
     }
