@@ -28,7 +28,14 @@ impl ServerFunction for Server
     {
         let ip = self.format_ip();
         let listener = TcpListener::bind(ip.as_slice());
-        let mut acceptor = listener.listen();
+        let mut acceptor = listener.listen().unwrap();
+        for opt_stream in acceptor.incoming()
+        {
+            spawn(proc(){
+                let mut stream = opt_stream.unwrap();
+                stream.write(b"Hello World\r\n").unwrap();
+            })
+        }
     }
 
     fn format_ip(&self) -> String
