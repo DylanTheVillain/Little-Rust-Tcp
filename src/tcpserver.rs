@@ -12,7 +12,7 @@ pub struct Server
 pub trait ServerFunction
 {
     fn new(new_port: String) -> Server;
-    fn start_server<T: Data>(&self, data_object: T);
+    fn start_server<T: Data>(&self, mut data_object: T);
     fn format_ip(&self) -> String;
     fn get_port(&self) -> String;
     fn get_ip(&self) -> String;
@@ -25,7 +25,7 @@ impl ServerFunction for Server
         return Server{port: new_port, ip: String::from_str("localhost")};
     }
 
-    fn start_server<T: Data>(&self, data_object: T)
+    fn start_server<T: Data>(&self, mut data_object: T)
     {
         let ip = self.format_ip();
         let listener = TcpListener::bind(ip.as_slice());
