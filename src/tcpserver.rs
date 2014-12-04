@@ -22,7 +22,7 @@ impl ServerFunction for Server
 {
     fn new(new_port: String) -> Server
     {
-        return Server{port: new_port, ip: String::from_str("localhost")};
+        return Server{port: new_port, ip: String::from_str("0.0.0.0")};
     }
 
     fn start_server<T: Data>(&self, mut data_object: T)
