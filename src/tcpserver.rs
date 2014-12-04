@@ -11,7 +11,7 @@ pub struct Server
 
 pub trait ServerFunction
 {
-    fn new(new_port: String) -> Server;
+    fn new(new_port: String, new_ip: String) -> Server;
     fn start_server<T: Data>(&self, mut data_object: T);
     fn format_ip(&self) -> String;
     fn get_port(&self) -> String;
@@ -20,9 +20,9 @@ pub trait ServerFunction
 
 impl ServerFunction for Server
 {
-    fn new(new_port: String) -> Server
+    fn new(new_port: String, new_ip: String) -> Server
     {
-        return Server{port: new_port, ip: String::from_str("localhost")};
+        return Server{port: new_port, ip: new_ip};
     }
 
     fn start_server<T: Data>(&self, mut data_object: T)
