@@ -1,6 +1,5 @@
 use std::string::String;
 use std::vec::Vec;
-use std::sync::TaskPool;
 use std::io::TcpStream;
 
 pub struct Clients
@@ -42,7 +41,7 @@ impl ClientFunction for Clients
         for dest in self.destinations.iter()
         {
             let mut tcp_stream = TcpStream::connect(dest.as_slice()).unwrap();
-            tcp_stream.write(message.as_bytes());
+            let _ = tcp_stream.write(message.as_bytes());
         }
     }
 }
