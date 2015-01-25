@@ -9,7 +9,7 @@ pub struct Clients
 
 pub trait ClientFunction
 {
-    fn new() -> Clients;
+    fn new() -> Self;
     fn add_client(&mut self, ip: String, port: String);
     fn remove_client(&mut self, index: usize);
     fn send_message(&mut self, message: String);
