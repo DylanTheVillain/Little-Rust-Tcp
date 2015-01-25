@@ -11,7 +11,7 @@ pub trait ClientFunction
 {
     fn new() -> Clients;
     fn add_client(&mut self, ip: String, port: String);
-    fn remove_client(&mut self, index: uint);
+    fn remove_client(&mut self, index: usize);
     fn send_message(&mut self, message: String);
 }
 
@@ -31,7 +31,7 @@ impl ClientFunction for Clients
         self.destinations.push(port_ip);
     }
 
-    fn remove_client(&mut self, index: uint)
+    fn remove_client(&mut self, index: usize)
     {
         self.destinations.remove(index);
     }
